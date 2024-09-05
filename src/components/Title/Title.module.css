@@ -1,0 +1,14 @@
+.title {
+	font-size: 24px;
+	color: red;
+}
+
+.primary {
+	/* composes: title; */
+	text-decoration: underline;
+}
+
+.secondary {
+	/* composes: title; */
+	font-style: italic;
+}

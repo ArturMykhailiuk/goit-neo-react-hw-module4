@@ -1,59 +1,72 @@
-import './App.css'
-import data from '../posts.json'
-import Post from './components/Post/Post'
-
-// const Post = ({ post }) => {
-// 	return (
-// 		<>
-// 			<h2>title: {post.title}</h2>
-// 			<p>body: {post.body}</p>
-// 		</>
-// 	)
-// }
+import Button from './components/Button/Button'
+import Card from './components/Card/Card'
+import Title from './components/Title/Title'
+import ReactIcon from './assets/react.svg'
 
 function App() {
-	// const elms = data.map((el) => {
-	// 	return <Post post={el} />
-	// })
 	return (
 		<div>
-			{data.map((el) => (
-				<Post post={el} key={el.id} />
-			))}
-			{/* 
-			<Post post={data[0]} />
-			<Post post={data[1]} />
-			<Post post={data[2]} /> */}
+			<Title isPrimary>qwerty</Title>
+			{/*  */}
+			<Title isPrimary={false}>!!!!!</Title>
+			<br />
+			<br />
+			<br />
+			<Button>
+				{/* <img src='../src/assets/react.svg' alt='' width={30} height={30} /> */}
+				<img src={ReactIcon} alt='' width={30} height={30} />
+			</Button>
+			<Button primary>Click me</Button>
+			<Button secondary>Click me again</Button>
+			<br />
+			<br />
+			<br />
+			<br />
+			<Card title='TEST'>
+				<ul>
+					<li>qwe</li>
+					<li>rty</li>
+					<li>123</li>
+				</ul>
+			</Card>
+			<Card secondary title='TEST 2'>
+				<Button>Test</Button>
+			</Card>
+			<Card title='TEST 3' footerTitle='TEST' primary>
+				<Button>Test</Button>
+				<Button>Test</Button>
+				<Button>Test</Button>
+			</Card>
 		</div>
 	)
 }
 
 export default App
+// import './App.css'
+// import defCss from './App.module.css'
 
-// const TestComponent = ({ name, age }) => {
-// 	// return <div>{name ? <p>Name: {name}</p> : <h2>{age}</h2>}</div>
+// console.log('defCss', defCss)
+
+// function App() {
 // 	return (
 // 		<div>
-// 			{false}
-// 			{true}
-// 			{null}
-// 			{undefined}
-// 			{name && <p>Name: {name}</p>}
-// 			<h2>{age}</h2>
+// 			{/* <h1 className='title'>Hello</h1> */}
+// 			<h1 className={defCss.title}>Hello</h1>
 // 		</div>
 // 	)
 // }
 
-// function App() {
-// 	const name = 'Den'
+// export default App
+// import './App.css'
+// import data from '../posts.json'
+// import Post from './components/Post/Post'
 
+// function App() {
 // 	return (
 // 		<div>
-// 			<h1>{name}</h1>
-// 			{/* {TestComponent({ age: '10' })} */}
-// 			{/* <TestComponent age='10' /> */}
-// 			<TestComponent name={0} age={30} />
-// 			<TestComponent age={20} />
+// 			{data.map((el) => (
+// 				<Post post={el} key={el.id} />
+// 			))}
 // 		</div>
 // 	)
 // }
