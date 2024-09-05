@@ -1,0 +1,32 @@
+.card {
+	max-width: 600px;
+	border-radius: 12px;
+	background-color: #ccc;
+	border: 2px solid red;
+	padding: 12px;
+}
+.primary {
+	background-color: yellow;
+	border-color: green;
+}
+.secondary {
+	background-color: red;
+	border-color: black;
+}
+.secondary .title {
+	color: wheat;
+}
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	color: red;
+}
+
+.content {
+	padding: 20px;
+	background-color: bisque;
+}
+
+.footer {
+	border-top: 2px solid green;
+}
