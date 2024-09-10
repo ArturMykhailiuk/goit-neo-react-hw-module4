@@ -1,74 +1,118 @@
-import Button from './components/Button/Button'
-import Card from './components/Card/Card'
-import Title from './components/Title/Title'
-import ReactIcon from './assets/react.svg'
+import { useState } from 'react'
+import Test from './components/Test/Test'
+import Test2 from './components/Test2/Test2'
 
-function App() {
+const App = () => {
+	const [state, setState] = useState(0)
+
+	const handleState = (value) => {
+		setState(value)
+	}
+
 	return (
 		<div>
-			<Title isPrimary>qwerty</Title>
-			{/*  */}
-			<Title isPrimary={false}>!!!!!</Title>
+			<Test value={state} />
 			<br />
-			<br />
-			<br />
-			<Button>
-				{/* <img src='../src/assets/react.svg' alt='' width={30} height={30} /> */}
-				<img src={ReactIcon} alt='' width={30} height={30} />
-			</Button>
-			<Button primary>Click me</Button>
-			<Button secondary>Click me again</Button>
-			<br />
-			<br />
-			<br />
-			<br />
-			<Card title='TEST'>
-				<ul>
-					<li>qwe</li>
-					<li>rty</li>
-					<li>123</li>
-				</ul>
-			</Card>
-			<Card secondary title='TEST 2'>
-				<Button>Test</Button>
-			</Card>
-			<Card title='TEST 3' footerTitle='TEST' primary>
-				<Button>Test</Button>
-				<Button>Test</Button>
-				<Button>Test</Button>
-			</Card>
+			<Test2 someFn={handleState} />
 		</div>
 	)
 }
 
 export default App
-// import './App.css'
-// import defCss from './App.module.css'
 
-// console.log('defCss', defCss)
+// import { useState } from 'react'
 
-// function App() {
+// const App = () => {
+// 	const [clicks, setClicks] = useState({
+// 		click1: 0,
+// 		click2: 0,
+// 		user: '',
+// 	})
+// 	const handleClick = (name) => {
+// 		setClicks({
+// 			...clicks,
+// 			[name]: clicks[name] + 1,
+// 		})
+// 	}
+
 // 	return (
 // 		<div>
-// 			{/* <h1 className='title'>Hello</h1> */}
-// 			<h1 className={defCss.title}>Hello</h1>
+// 			<button onClick={() => handleClick('click1')}>
+// 				click 1 {clicks.click1}
+// 			</button>
+// 			<br />
+// 			<p>Sum: {clicks.click1 + clicks.click2}</p>
+// 			<br />
+// 			<button onClick={() => handleClick('click2')}>
+// 				click 2 {clicks.click2}
+// 			</button>
 // 		</div>
 // 	)
 // }
 
 // export default App
-// import './App.css'
-// import data from '../posts.json'
-// import Post from './components/Post/Post'
 
-// function App() {
+// const handleClick = (id) => {
+
+//  }
+// document.addEventListener('submit', handleClick)
+// document.addEventListener('click',()=>{handleClick('qweqwyeut')})
+// import { useState } from 'react'
+
+// const Clicker = ({ value, clickFn }) => {
+// 	// const [counter, setCounter] = useState(0)
+
+// 	// const handleClick = () => {
+// 	// 	setCounter(counter + 1)
+// 	// 	console.log('counter', counter)
+// 	// }
+// 	return <button onClick={clickFn}>Click 1 {value}</button>
+// }
+
+// const App = () => {
+// 	// let counter = 0
+
+// 	const [counter, setCounter] = useState(0)
+// 	const [counter2, setCounter2] = useState(0)
+
+// 	const handleClick = () => {
+// 		setCounter(counter + 1)
+// 	}
+
+// 	const handleClick2 = () => {
+// 		setCounter2(counter2 + 1)
+// 	}
+
 // 	return (
 // 		<div>
-// 			{data.map((el) => (
-// 				<Post post={el} key={el.id} />
-// 			))}
+// 			<Clicker value={counter} clickFn={handleClick} />
+// 			<br />
+// 			<p>Sum: {counter + counter2}</p>
+// 			<br />
+// 			<Clicker value={counter2} clickFn={handleClick2} />
+
+// 			{/* <button onClick={() => handleClick(5)}>Click</button> */}
+// 			{/* <button onClick={handleClick}>Click 1 {counter}</button> */}
 // 		</div>
 // 	)
 // }
 
 // export default App
+
+// // const handleClick = (id) => {
+
+// //  }
+// // document.addEventListener('submit', handleClick)
+// // document.addEventListener('click',()=>{handleClick('qweqwyeut')})
+
+// const user = {
+// 	name:'Alex',
+// 	age:42
+// }
+
+// // user.name = 'Bob'
+// user = {
+// 	...user,
+// 	name:'Bob'
+// }
+// user === user
