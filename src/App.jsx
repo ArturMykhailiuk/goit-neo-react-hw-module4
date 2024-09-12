@@ -1,118 +1,114 @@
-import { useState } from 'react'
-import Test from './components/Test/Test'
-import Test2 from './components/Test2/Test2'
+import { useEffect, useState } from 'react'
+import posts from '../posts.json'
+import Paginator from './components/Paginator/Paginator'
+import Post from './components/Post/Post'
+
+const getDefaultPage = () => {
+	const newPage = localStorage.getItem('curPost')
+	if (newPage !== null) {
+		return JSON.parse(newPage)
+	}
+	return 1
+}
 
 const App = () => {
-	const [state, setState] = useState(0)
+	const [curPost, setCurPost] = useState(getDefaultPage)
 
-	const handleState = (value) => {
-		setState(value)
+	const handlePrev = () => {
+		if (curPost === 1) return
+		setCurPost(curPost - 1)
 	}
+
+	const handleNext = () => {
+		if (curPost === posts.length) return
+		setCurPost(curPost + 1)
+	}
+
+	// useEffect(() => {
+	// 	const page = localStorage.getItem('curPost')
+	// 	if(page!==null){
+	// 		setCurPost(JSON.parse(page))
+	// 	}
+	// }, [])
+
+	useEffect(() => {
+		localStorage.setItem('curPost', curPost)
+	}, [curPost])
 
 	return (
 		<div>
-			<Test value={state} />
-			<br />
-			<Test2 someFn={handleState} />
+			<Paginator prev={handlePrev} next={handleNext}>
+				{curPost}/{posts.length}
+			</Paginator>
+			<Post post={posts[curPost - 1]} />
 		</div>
 	)
 }
 
 export default App
+// function fn(clb, arr, prevState, prevProps) {
+// 	if (arr[0] === prevState[0]) {
+// 		return
+// 	} else clb()
+// }
 
-// import { useState } from 'react'
+// fn(a, b)
+// import { useEffect, useState } from 'react'
+// // import Test from './components/Test/Test'
 
 // const App = () => {
-// 	const [clicks, setClicks] = useState({
-// 		click1: 0,
-// 		click2: 0,
-// 		user: '',
-// 	})
-// 	const handleClick = (name) => {
-// 		setClicks({
-// 			...clicks,
-// 			[name]: clicks[name] + 1,
-// 		})
-// 	}
+// 	const [state, setState] = useState(0)
+// 	const [curDate, setCurDate] = useState(new Date().getTime())
+// 	// const [isShowInterval, setIsShowInterval] = useState(false)
+
+// 	// // console.log('Outside')
+
+// 	// Mount + Update
+// 	// useEffect(() => {
+// 	// 	console.log('Mount + Update')
+// 	// })
+
+// 	// // Mount
+// 	// useEffect(() => {
+// 	// 	console.log('Mount')
+// 	// }, [])
+
+// 	// // Mount + Update state
+// 	useEffect(() => {
+// 		// if (state === 0) return
+// 		console.log('Update', state)
+// 	}, [state])
+
+// 	useEffect(() => {
+// 		console.log('date', curDate)
+// 	}, [curDate])
+
+// 	// // Unmount
+// 	// useEffect(() => {
+// 	// 	return () => {
+// 	// 		console.log('Unmount')
+// 	// 	}
+// 	// }, [state])
 
 // 	return (
 // 		<div>
-// 			<button onClick={() => handleClick('click1')}>
-// 				click 1 {clicks.click1}
+// 			<button onClick={() => setState(state + 1)}>Click {state}</button>
+// 			<button onClick={() => setCurDate(new Date().getTime())}>
+// 				Click {curDate}
 // 			</button>
-// 			<br />
-// 			<p>Sum: {clicks.click1 + clicks.click2}</p>
-// 			<br />
-// 			<button onClick={() => handleClick('click2')}>
-// 				click 2 {clicks.click2}
+// 			{/* <button onClick={() => setIsShowInterval(!isShowInterval)}>
+// 				{isShowInterval ? 'Hide' : 'Show'} interval
 // 			</button>
+// 			{isShowInterval && <Test />} */}
 // 		</div>
 // 	)
 // }
 
 // export default App
+// // function fn(clb, arr, prevState, prevProps) {
+// // 	if (arr[0] === prevState[0]) {
+// // 		return
+// // 	} else clb()
+// // }
 
-// const handleClick = (id) => {
-
-//  }
-// document.addEventListener('submit', handleClick)
-// document.addEventListener('click',()=>{handleClick('qweqwyeut')})
-// import { useState } from 'react'
-
-// const Clicker = ({ value, clickFn }) => {
-// 	// const [counter, setCounter] = useState(0)
-
-// 	// const handleClick = () => {
-// 	// 	setCounter(counter + 1)
-// 	// 	console.log('counter', counter)
-// 	// }
-// 	return <button onClick={clickFn}>Click 1 {value}</button>
-// }
-
-// const App = () => {
-// 	// let counter = 0
-
-// 	const [counter, setCounter] = useState(0)
-// 	const [counter2, setCounter2] = useState(0)
-
-// 	const handleClick = () => {
-// 		setCounter(counter + 1)
-// 	}
-
-// 	const handleClick2 = () => {
-// 		setCounter2(counter2 + 1)
-// 	}
-
-// 	return (
-// 		<div>
-// 			<Clicker value={counter} clickFn={handleClick} />
-// 			<br />
-// 			<p>Sum: {counter + counter2}</p>
-// 			<br />
-// 			<Clicker value={counter2} clickFn={handleClick2} />
-
-// 			{/* <button onClick={() => handleClick(5)}>Click</button> */}
-// 			{/* <button onClick={handleClick}>Click 1 {counter}</button> */}
-// 		</div>
-// 	)
-// }
-
-// export default App
-
-// // const handleClick = (id) => {
-
-// //  }
-// // document.addEventListener('submit', handleClick)
-// // document.addEventListener('click',()=>{handleClick('qweqwyeut')})
-
-// const user = {
-// 	name:'Alex',
-// 	age:42
-// }
-
-// // user.name = 'Bob'
-// user = {
-// 	...user,
-// 	name:'Bob'
-// }
-// user === user
+// // fn(a, b)
