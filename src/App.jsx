@@ -1,114 +1,70 @@
-import { useEffect, useState } from 'react'
-import posts from '../posts.json'
-import Paginator from './components/Paginator/Paginator'
-import Post from './components/Post/Post'
-
-const getDefaultPage = () => {
-	const newPage = localStorage.getItem('curPost')
-	if (newPage !== null) {
-		return JSON.parse(newPage)
-	}
-	return 1
-}
+import { useState } from 'react'
+import SearchField from './components/SearchField/SearchField'
+import ControlForm from './components/ControlForm/ControlForm'
 
 const App = () => {
-	const [curPost, setCurPost] = useState(getDefaultPage)
+	// const [searchValue, setSearchValue] = useState('')
 
-	const handlePrev = () => {
-		if (curPost === 1) return
-		setCurPost(curPost - 1)
+	// const handleSearch = (value) => {
+	// 	setSearchValue(value)
+	// }
+
+	const handleSave = (data) => {
+		console.log('data', data)
 	}
-
-	const handleNext = () => {
-		if (curPost === posts.length) return
-		setCurPost(curPost + 1)
-	}
-
-	// useEffect(() => {
-	// 	const page = localStorage.getItem('curPost')
-	// 	if(page!==null){
-	// 		setCurPost(JSON.parse(page))
-	// 	}
-	// }, [])
-
-	useEffect(() => {
-		localStorage.setItem('curPost', curPost)
-	}, [curPost])
 
 	return (
 		<div>
-			<Paginator prev={handlePrev} next={handleNext}>
-				{curPost}/{posts.length}
-			</Paginator>
-			<Post post={posts[curPost - 1]} />
+			<ControlForm save={handleSave} />
+			{/* <Form onSave={handleSave} /> */}
+			{/* <SearchField
+				labelText='Search'
+				handleSearch={handleSearch}
+				searchValue={searchValue}
+			/> */}
+			<hr />
+			<hr />
+			{/* <p>Search value: {searchValue}</p> */}
+
+			<hr />
+			{/* Your name:{name}
+			<br />
+			Your address:{address}
+			<br />
+			Your Lang:{lang} */}
 		</div>
 	)
 }
-
-export default App
-// function fn(clb, arr, prevState, prevProps) {
-// 	if (arr[0] === prevState[0]) {
-// 		return
-// 	} else clb()
-// }
-
-// fn(a, b)
-// import { useEffect, useState } from 'react'
-// // import Test from './components/Test/Test'
-
 // const App = () => {
-// 	const [state, setState] = useState(0)
-// 	const [curDate, setCurDate] = useState(new Date().getTime())
-// 	// const [isShowInterval, setIsShowInterval] = useState(false)
+// 	const [name, setName] = useState('')
+// 	const [address, setAddress] = useState('')
+// 	const [lang, setLang] = useState('')
 
-// 	// // console.log('Outside')
-
-// 	// Mount + Update
-// 	// useEffect(() => {
-// 	// 	console.log('Mount + Update')
-// 	// })
-
-// 	// // Mount
-// 	// useEffect(() => {
-// 	// 	console.log('Mount')
-// 	// }, [])
-
-// 	// // Mount + Update state
-// 	useEffect(() => {
-// 		// if (state === 0) return
-// 		console.log('Update', state)
-// 	}, [state])
-
-// 	useEffect(() => {
-// 		console.log('date', curDate)
-// 	}, [curDate])
-
-// 	// // Unmount
-// 	// useEffect(() => {
-// 	// 	return () => {
-// 	// 		console.log('Unmount')
-// 	// 	}
-// 	// }, [state])
+// 	const handleSave = (data) => {
+// 		setAddress(data.address)
+// 		setName(data.name)
+// 		setLang(data.lang)
+// 	}
 
 // 	return (
 // 		<div>
-// 			<button onClick={() => setState(state + 1)}>Click {state}</button>
-// 			<button onClick={() => setCurDate(new Date().getTime())}>
-// 				Click {curDate}
-// 			</button>
-// 			{/* <button onClick={() => setIsShowInterval(!isShowInterval)}>
-// 				{isShowInterval ? 'Hide' : 'Show'} interval
-// 			</button>
-// 			{isShowInterval && <Test />} */}
+// 			{/* <Form onSave={handleSave} /> */}
+// 			<label>
+// 				Search:
+// 				<br />
+// 				<input type='text' />
+// 			</label>
+// 			<hr />
+// 			<hr />
+
+// 			<hr />
+// 			{/* Your name:{name}
+// 			<br />
+// 			Your address:{address}
+// 			<br />
+// 			Your Lang:{lang} */}
 // 		</div>
 // 	)
 // }
 
-// export default App
-// // function fn(clb, arr, prevState, prevProps) {
-// // 	if (arr[0] === prevState[0]) {
-// // 		return
-// // 	} else clb()
-// // }
-
-// // fn(a, b)
+export default App
