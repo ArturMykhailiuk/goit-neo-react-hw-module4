@@ -1,7 +1,7 @@
 const TextField = ({ labelText, textValue, change, inputName }) => {
-	const handleChange = ({ target: { value, name } }) => {
-		change(value, name)
-	}
+	// const handleChange = ({ target: { value, name } }) => {
+	// 	change(value, name)
+	// }
 
 	return (
 		<label>
@@ -11,7 +11,8 @@ const TextField = ({ labelText, textValue, change, inputName }) => {
 				type='text'
 				name={inputName}
 				value={textValue}
-				onChange={handleChange}
+				// onChange={handleChange}
+				onChange={change}
 			/>
 		</label>
 	)
