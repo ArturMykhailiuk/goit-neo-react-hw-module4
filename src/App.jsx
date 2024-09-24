@@ -1,22 +1,67 @@
-import ControlForm from './components/ControlForm/ControlForm'
-import FormFormik from './components/FormFormik/FormFormik'
+import { useEffect, useState } from 'react'
+import ArticleList from './components/ArticleList/ArticleList'
+import { fetchArticles } from './api/articles-api'
+import SearchForm from './components/SearchForm/SearchForm'
 
 const App = () => {
-	const handleSave = (data) => {
-		console.log('data', data)
+	const [articles, setArticles] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState(false)
+	const [page, setPage] = useState(1)
+	const [searchQuery, setSearchQuery] = useState('')
+
+	useEffect(() => {
+		if (!searchQuery) return
+
+		const getArticles = async () => {
+			try {
+				setIsLoading(true)
+				setError(false)
+				const res = await fetchArticles(searchQuery, page)
+				setArticles((prevState) => {
+					return [...prevState, ...res]
+				})
+			} catch (error) {
+				console.error(error)
+				setError(true)
+			} finally {
+				setIsLoading(false)
+			}
+		}
+		getArticles()
+	}, [page, searchQuery])
+
+	const handleSearch = (query) => {
+		setSearchQuery(query)
+		setArticles([])
+		setPage(1)
 	}
-	const handleSaveFormik = (data) => {
-		console.log('FormikData', data)
+
+	const handlePage = () => {
+		setPage(page + 1)
 	}
 
 	return (
 		<div>
-			<FormFormik save={handleSaveFormik} />
+			<SearchForm onSearch={handleSearch} />
+			{error && <h3>Oops error... pls reload!</h3>}
 			<hr />
-			<hr />
-			<hr />
-			<ControlForm save={handleSave} />
+			{articles.length > 0 && <ArticleList items={articles} />}
+
+			{isLoading && <h2>Loading...</h2>}
+
+			{articles.length > 0 && (
+				<button onClick={handlePage}>Load more...</button>
+			)}
 		</div>
 	)
 }
 export default App
+
+// useEffect(() => {
+// 	const getArticles = async () => {
+// 		const res = await fetchArticles()
+// 		setArticles(res)
+// 	}
+// 	getArticles()
+// }, [])
