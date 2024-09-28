@@ -41,8 +41,8 @@ const App = () => {
 		setPage(page + 1)
 	}
 
-	return (
-		<div>
+  return (
+      <div>
 			<SearchForm onSearch={handleSearch} />
 			{error && <h3>Oops error... pls reload!</h3>}
 			<hr />
@@ -53,15 +53,9 @@ const App = () => {
 			{articles.length > 0 && (
 				<button onClick={handlePage}>Load more...</button>
 			)}
-		</div>
-	)
-}
-export default App
+      </div>
 
-// useEffect(() => {
-// 	const getArticles = async () => {
-// 		const res = await fetchArticles()
-// 		setArticles(res)
-// 	}
-// 	getArticles()
-// }, [])
+  )
+}
+
+export default App
